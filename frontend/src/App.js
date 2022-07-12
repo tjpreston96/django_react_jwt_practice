@@ -1,27 +1,36 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+// Pages
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+// Components
 import Header from "./components/Header";
-import PrivateRoutes from "./utils/PrivateRoutes";
+// Context
+import { AuthProvider } from "./context/AuthContext";
+// Utils
+import PrivateWrapper from "./utils/PrivateWrapper";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* Static Components */}
-        <Header />
+        <AuthProvider>
+          {/* Static Components */}
+          <Header />
 
-        <Routes>
-          {/* Public Routes */}
-          <Route element={<LoginPage />} path="/login" />
+          <Routes>
+            {/* Public Routes */}
+            <Route element={<LoginPage />} path="/login" />
 
-          {/* Private Routes */}
-          <Route element={<PrivateRoutes />}>
-            <Route element={<HomePage />} path="/" />
-          </Route>
-        </Routes>
+            {/* PrivateWrapper checks for user otherwise navigates to '/login' */}
+            <Route element={<PrivateWrapper />}>
+
+              {/* Private Routes */}
+              <Route element={<HomePage />} path="/" />
+            </Route>
+          </Routes>
+        </AuthProvider>
       </Router>
     </div>
   );
