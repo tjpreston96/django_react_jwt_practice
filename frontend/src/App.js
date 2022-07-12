@@ -16,7 +16,6 @@ function App() {
     <div className="App">
       <Router>
         <AuthProvider>
-          {/* Static Components */}
           <Header />
 
           <Routes>
@@ -25,7 +24,6 @@ function App() {
 
             {/* PrivateWrapper checks for user otherwise navigates to '/login' */}
             <Route element={<PrivateWrapper />}>
-
               {/* Private Routes */}
               <Route element={<HomePage />} path="/" />
             </Route>
