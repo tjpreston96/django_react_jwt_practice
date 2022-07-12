@@ -9,6 +9,8 @@ const Header = () => {
       <Link to="/">Home</Link>
       <span> | </span>
       {user ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>}
+
+      {user && <p>Hello {user.username}</p>}
     </div>
   );
 };
