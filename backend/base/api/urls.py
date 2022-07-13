@@ -6,6 +6,8 @@ from .views import MyTokenObtainPairView
 
 urlpatterns = [
     path("", views.get_routes, name="routes"),
+    path("api/notes/", views.get_notes, name="notes"),
+    # Token Routes
     path("api/token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]
